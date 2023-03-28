@@ -1053,6 +1053,7 @@ name = "rust_hub"
 version = "0.1.0"
 dependencies = [
  "actix-web",
+ "rand",
  "reqwest",
  "tokio",
 ]

@@ -1,7 +1,7 @@
 use std::net::TcpListener;
 
 #[tokio::test]
-async fn login_works() {
+async fn requests_without_apikeys_are_rejected_for_login() {
     let address = spawn_app();
     let client = reqwest::Client::new();
 
@@ -10,8 +10,7 @@ async fn login_works() {
         .send()
         .await
         .expect("Failed to execute request.");
-    assert!(response.status().is_success());
-    assert_eq!(Some(0), response.content_length());
+    assert_eq!(401, response.status().as_u16());
 }
 
 fn spawn_app() -> String {
